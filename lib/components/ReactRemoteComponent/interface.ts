@@ -1,3 +1,4 @@
+import exp from "constants";
 import React from "react";
 interface RenderComponent {
     loading: boolean;
@@ -27,4 +28,15 @@ export interface RemoteComponentProps<T> {
     */  
     onComponentRenderFailed?: () => void;
 
+}
+
+export interface ComponentConfig {
+    /**
+    * 远程组件名
+    */
+    name: string;
+    /**
+    * 组件版本
+    */
+    version?: string;
 }
