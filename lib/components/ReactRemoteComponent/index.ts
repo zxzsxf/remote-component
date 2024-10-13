@@ -1,6 +1,8 @@
 import React from "react";
 import { RemoteComponentProps } from './interface'
 
+const BUCKET_ADDRESS = 'http://localhost:3007'
+
 class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>> {
     constructor(props:RemoteComponentProps<T>) {
         super(props);
@@ -16,7 +18,7 @@ class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>> {
         this.loadComponent();
     }
     getComponentSourceUrl = ({ name, version}) => {
-        
+
     }
 
     loadComponent = async () => {
