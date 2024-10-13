@@ -16,6 +16,8 @@ class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>> {
             ComponentSourceUrl: null,
             loading: true,
             error: null,
+            // 是否开启本地调试
+            isLocal: false, 
         }
     }
     setLoading(state: boolean) {
