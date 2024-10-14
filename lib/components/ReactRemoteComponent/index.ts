@@ -5,7 +5,7 @@ import jsonpLoader from "../../jsonp-loader";
 
 import { RemoteComponentProps, ComponentConfig } from './interface'
 
-const BUCKET_ADDRESS = 'http://localhost:3007'
+// const BUCKET_ADDRESS = 'http://localhost:3007'
 
 class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>> {
     constructor(props:RemoteComponentProps<T>) {

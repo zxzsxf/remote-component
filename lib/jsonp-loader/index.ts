@@ -33,6 +33,7 @@ const jsonpLoader = ({
     const p = new Promise<any>((resolve, reject) => {
         const script = document.createElement('script');
         const head = document.querySelector('head');
+        getCurrentModule();
         script.src = `${url}?timeStamp=${new Date().getTime()}`;
         script.crossOrigin = 'anonymous';
         if(head) {

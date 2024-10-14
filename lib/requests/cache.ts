@@ -26,6 +26,7 @@ class Cache {
 
     getTargetComponentCache({ name, version }: any): React.ComponentType | null {
         const key = this.getCachedComponentKey({ name, version });
+        // @ts-ignore
         return this.cache.has(key) ? this.cache.get(key) : null;
     }
 
