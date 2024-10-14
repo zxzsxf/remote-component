@@ -55,6 +55,7 @@ class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>> {
             })
             const module = await jsonpLoader({
                 url: sourceUrl,
+                version,
                 componentName: name,
             })
             if(module) {
