@@ -18,6 +18,7 @@ const jsonpLoader = ({
     if(!url) {
         throw Error('invalid url');
     }
+    console.log(url, 'url');
     // @ts-ignore
     const remoteCurrentModules = window[`remote_${componentName}`];
     if(remoteCurrentModules) {
@@ -37,8 +38,10 @@ const jsonpLoader = ({
         script.src = `${url}?timeStamp=${new Date().getTime()}`;
         script.crossOrigin = 'anonymous';
         if(head) {
+            console.log(script.src, 'script.src');
             head.appendChild(script);
             script.onload = () => {
+                console.log(currentModule, 'currentModule');
                 resolve(currentModule)
             }
             script.onerror = (err) => {

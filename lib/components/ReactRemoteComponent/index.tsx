@@ -3,7 +3,6 @@ import getSourceUrl from '../../requests/getSourceUrl'
 import cache from "../../requests/cache";
 import jsonpLoader from "../../jsonp-loader";
 import { RemoteComponentProps, ComponentConfig } from './interface'
-
 // const BUCKET_ADDRESS = 'http://localhost:3007'
 
 class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>, any> {
@@ -35,6 +34,9 @@ class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>, a
         })
     }
     componentDidMount(): void {
+        if(!this.props.name || !this.props.version) {
+            return;
+        }
         this.loadComponent();
     }
     getComponentSourceUrl = async (componentConfig: ComponentConfig) => {
@@ -57,20 +59,24 @@ class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>, a
     loadComponent = async () => {
         const { name, version } = this.props;
         try {
-            const sourceUrl = await this.getComponentSourceUrl({
+            const {sourceUrl} = await this.getComponentSourceUrl({
                 name,
                 version
             })
+            console.log(sourceUrl,'sourceUrl==');
             const module = await jsonpLoader({
                 url: sourceUrl,
                 version,
                 componentName: name,
             })
             if(module) {
+                console.log(module, 'module');
                 this.setLoading(false);
                 this.setComponent(module);
             } else {
                 // 重试
+                this.setLoading(false);
+                this.setComponent(null);
             }
         } catch (err) {
             this.setLoading(false);
@@ -80,11 +86,11 @@ class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>, a
     }
     
     render() {
-        const { render } = this.props;
-        const { Component } = this.state;
-        if(render) {
-            return render(Component);
-        }
+        // const { render } = this.props;
+        // const { Component } = this.state;
+        // if(render) {
+        //     return render(Component);
+        // }
         return (
             <div className="remote-component-container">
                 {this.renderRemoteComponent()}
@@ -92,5 +98,6 @@ class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>, a
         )
     }
 }
+
 
 export default ReactRemoteComponent;
