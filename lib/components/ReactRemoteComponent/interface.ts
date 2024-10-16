@@ -26,6 +26,10 @@ export interface RemoteComponentProps<T> {
     * 渲染失败回调
     */  
     onComponentRenderFailed?: () => void;
+    /**
+    * 组件prop
+    */  
+    componentProps?: any;
 
 }
 

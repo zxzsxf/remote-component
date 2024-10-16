@@ -1,5 +1,5 @@
 {
-  "name": "@zxz/remote-component",
+  "name": "remote-component-loader",
   "version": "1.0.0",
   "description": "远程组件",
   "main": "build/index.js",
@@ -62,6 +62,10 @@
     "classnames": "*",
     "react": "*",
     "react-dom": "*"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
     "vue": "^2.6.11",

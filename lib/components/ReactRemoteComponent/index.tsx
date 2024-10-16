@@ -2,12 +2,11 @@ import React from "react";
 import getSourceUrl from '../../requests/getSourceUrl'
 import cache from "../../requests/cache";
 import jsonpLoader from "../../jsonp-loader";
-
 import { RemoteComponentProps, ComponentConfig } from './interface'
 
 // const BUCKET_ADDRESS = 'http://localhost:3007'
 
-class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>> {
+class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>, any> {
     constructor(props:RemoteComponentProps<T>) {
         super(props);
         this.state = {
@@ -45,6 +44,15 @@ class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>> {
         }
         return await getSourceUrl(componentConfig);
     }
+    renderRemoteComponent = () => {
+        const { Component } = this.state;
+        const { componentProps } = this.props;
+        return (
+            Component ? 
+                <Component {...componentProps}></Component>
+            : null
+        )
+    } 
 
     loadComponent = async () => {
         const { name, version } = this.props;
@@ -69,6 +77,19 @@ class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>> {
             this.setComponent(null);
             this.setError(err);
         }
+    }
+    
+    render() {
+        const { render } = this.props;
+        const { Component } = this.state;
+        if(render) {
+            return render(Component);
+        }
+        return (
+            <div className="remote-component-container">
+                {this.renderRemoteComponent()}
+            </div>
+        )
     }
 }
 
