@@ -12,12 +12,17 @@ import babel from '@rollup/plugin-babel';
 
 const extensions = ['.js', '.ts', '.tsx'];
 
-
 export default {
     input: 'lib/index.ts',
     output: [{
-        file: 'build/index.js',
+        dir: 'build',
         format: 'cjs',
+
+        // 源码调试
+        sourcemap: true,
+        exports: 'named',
+        indent: '    ',
+        preserveModules: true
     }],
     plugins: [
         external({
