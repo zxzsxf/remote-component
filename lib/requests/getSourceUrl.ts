@@ -13,8 +13,10 @@ const getRemoteListRequest: (config?: any) => Promise<any> = (config) => {
         }
         try {
             const list = WINDOW_MICRO_CONFIG[name] || [];
+            console.log('componentList',list);
             resolve(list);
         } catch(err) {
+            console.error('get component list error',err);
             reject([])
         }
     });

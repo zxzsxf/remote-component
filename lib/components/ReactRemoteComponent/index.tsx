@@ -60,7 +60,7 @@ class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>, a
     loadComponent = async () => {
         const { name, version } = this.props;
         try {
-            const {sourceUrl} = await this.getComponentSourceUrl({
+            const { path: sourceUrl} = await this.getComponentSourceUrl({
                 name,
                 version
             })
