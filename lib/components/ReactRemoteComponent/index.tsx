@@ -41,6 +41,7 @@ class ReactRemoteComponent<T> extends React.Component<RemoteComponentProps<T>, a
     }
     getComponentSourceUrl = async (componentConfig: ComponentConfig) => {
         let sourceUrl = cache.getComponentSourceUrl(componentConfig);
+        console.log( '从cache获取sourceUrl', sourceUrl, componentConfig);
         if(sourceUrl) {
             return sourceUrl;
         }

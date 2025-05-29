@@ -1,8 +1,8 @@
 {
   "name": "remote-component-loader",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "远程组件",
-  "main": "build/index.js",
+  "main": "build/lib/index.js",
   "types": "./build/index.d.ts",
   "directories": {
     "lib": "lib",

@@ -2,6 +2,11 @@ export const componentList = [
     {
         name: 'zxz-button',
         version:'1.0.0',
+        sourceUrl: 'http://localhost:4000/components/button/button-1748446739186.js'
+    },
+    {
+        name: 'zxz-button',
+        version:'1.0.0',
         sourceUrl: 'http://localhost:9999/main.js'
     },
     {

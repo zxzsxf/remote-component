@@ -25,7 +25,7 @@ const jsonpLoader = ({
         return Promise.resolve(remoteCurrentModules);
     }
     const cacheComponent = cache.getTargetComponentCache({
-        name:componentName,
+        name: componentName,
         version
     })
     if(cacheComponent) {

@@ -3,15 +3,16 @@ import { GetSourceUrlPromise } from '../interface';
 // @ts-ignore
 import { componentList } from './componentList.js'
 
-const getRemoteListRequest: (config?: any) => Promise<any> = () => {
+let WINDOW_MICRO_CONFIG = window.microConfig || {};
 
+const getRemoteListRequest: (config?: any) => Promise<any> = (config) => {
+    const { name = '' } = config;
     return new Promise(async (resolve,reject) => {
-        // 后续改为从配置平台获取
+        if(!WINDOW_MICRO_CONFIG || Object.keys(WINDOW_MICRO_CONFIG).length === 0) {
+            WINDOW_MICRO_CONFIG = window.microConfig || {};
+        }
         try {
-            const list = componentList.filter((item: any) => {
-                const { name = '', version = '' } = item;
-                return item?.name === name && item?.version === version;
-               })
+            const list = WINDOW_MICRO_CONFIG[name] || [];
             resolve(list);
         } catch(err) {
             reject([])
